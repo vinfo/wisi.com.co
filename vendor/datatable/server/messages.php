@@ -7,43 +7,9 @@ $primaryKey = 'id';
 
 
 $columns = array(
-	array( 'db' => 'm.message', 'dt' => 'message', 'field' => 'message','joinName'=>'m.message'),
+	      array( 'db' => 'm.message', 'dt' => 'message', 'field' => 'message','joinName'=>'m.message'),
         array( 'db' => 't.name AS type', 'dt' => 'type', 'field' => 'type','joinName'=>'t.name'),
-    
-        array(
-		'db'        => 'm.start_date',
-		'dt'        => 'start_date',
-		'formatter' => function( $d, $row ) {
-                    setlocale(LC_TIME, "spanish"); 
-                    $format ='%A '.((strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? '%#d' : '%e').' de %B del %Y';
-                    return utf8_encode(strftime($format, strtotime($d)));
-		},
-               'field' => 'start_date',
-               'joinName'=>'m.start_date'
-	),
-        array(
-		'db'        => 'm.finish_date',
-		'dt'        => 'finish_date',
-		'formatter' => function( $d, $row ) {
-                    setlocale(LC_TIME, "spanish"); 
-                    $format ='%A '.((strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? '%#d' : '%e').' de %B del %Y';
-                    return utf8_encode(strftime($format, strtotime($d)));
-		},
-               'field' => 'finish_date',
-               'joinName'=>'m.finish_date'
-	),
-	array(
-		'db'        => 'm.cdate',
-		'dt'        => 'cdate',
-		'formatter' => function( $d, $row ) {
-                    setlocale(LC_TIME, "spanish"); 
-                    $format ='%A '.((strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? '%#d' : '%e').' de %B del %Y';
-                    return utf8_encode(strftime($format, strtotime($d)));
-		},
-               'field' => 'cdate',
-               'joinName'=>'m.cdate'
-	),
-        
+        array( 'db' => 'm.mtime', 'dt' => 'mtime', 'field' => 'mtime','joinName'=>'m.mtime'),   
         array(
             'db'=>'m.id', 
             'dt'=>'action',

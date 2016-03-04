@@ -37,12 +37,19 @@ class User extends CI_Controller {
                        $data['realType'] = 4;
                        $validateRol = "advertiser";
                        $data['body'] = 'admin/user_advertiser';
+                       $data['readonly'] = '';
+                       $data['disabled'] = '';
+                       if($this->session->userdata('type_id')<>4){
+                        $data['readonly'] = 'readonly';
+                        $data['disabled'] = 'disabled';                       
+                       }
                        break;
                  }
                 
                 $data['roles'] = $this->wisi_model->GetTypesByGroup(1);
                 $data['countries'] = $this->wisi_model->GetCountries();
                 $data['marital'] = $this->wisi_model->GetTypesByGroup(2);
+                $data['genre'] = $this->wisi_model->GetTypesByGroup(7);
 
                 
                 if (!empty($id) && is_numeric($id)) {
@@ -200,7 +207,7 @@ class User extends CI_Controller {
             $image = null;
             $formValidation = true;
             
-            if ($_FILES['image']['name'] != "") {
+            if (isset($_FILES['image']['name'])&&$_FILES['image']['name'] != "") {
 
                 $imgTodelete = $this->user_model->GetUserById($id);
 
@@ -234,6 +241,7 @@ class User extends CI_Controller {
                     $formValidation = false;
                 }
             }
+
             if ($formValidation) {
                 
                 $prependUser = array(
@@ -248,7 +256,6 @@ class User extends CI_Controller {
                     'city'          =>   isset($_POST['city']) ? $this->input->post('city') : "",
                     'marital'       =>   isset($_POST['marital']) ? $this->input->post('marital') : "",
                     'birthday'      =>   isset($_POST['birthday']) ? str_replace("/", "-", $this->input->post('birthday')) : "",
-                    'username'      =>   isset($_POST['address']) ? $this->input->post('address') : "",
                     'company'       =>   isset($_POST['company']) ? $this->input->post('company') : "",
                     'nit'           =>   isset($_POST['nit']) ? $this->input->post('nit') : "",
                     'newsletter'    =>   isset($_POST['newsletter']) ? $this->input->post('newsletter') : 0,

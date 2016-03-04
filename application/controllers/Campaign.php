@@ -20,28 +20,30 @@ class Campaign extends CI_Controller{
         $data['body'] = "admin/campaign";
         $data['campaigns'] = $this->wisi_model->GetTypesByGroup(4);
         $data['hotspots'] = $this->hotspot_model->GetHotSpots();
-        $data['filters'] =$this->wisi_model->GetTypesByGroup(6);
+        $data['filtersEdad'] =$this->wisi_model->GetTypesByGroup(6);
+        $data['filtersGenero'] =$this->wisi_model->GetTypesByGroup(7);
         
         switch($level){
             case'global':
                 $data['level']=1;
+                $data['tipo']="Global";
                 break;
             case'connection':
                 $data['level']=2;
+                $data['tipo']="Conexión";
                 break;
             case'action':
                 $data['level']=3;
+                $data['tipo']="Acción";
                 break;
         }
 
         if (isset($_POST['action']) && $_POST['action'] == "new") {
-
             $this->add($data['level']);
         }//end new
 
         if (!empty($id) && is_numeric($id)) {
             if (isset($_POST['action']) && $_POST['action'] == "edit") {
-
                 $this->edit($id,$data['level']);
             }//end action
             $data['campigndata'] = $this->campaign_model->GetCampaignById($id);
@@ -49,13 +51,16 @@ class Campaign extends CI_Controller{
             $checkFilters=array();
 
             if ($data['campigndata']) {
-
                 foreach ($this->campaign_model->GetHostSpotsOnCampaign($id) as $hotspot) {
                     $checkHots[$hotspot->hotspot_id] = true;
                 }
-                 foreach ($this->campaign_model->GetFiltersOnCampaign($id) as $filter) {
-                    $checkFilters[$filter->type_id] = true;
+                $filters=$this->campaign_model->GetFiltersOnCampaign($id);
+                if($filters){
+                    foreach ($filters as $filter) {
+                        $checkFilters[$filter->type_id] = true;
+                    }                    
                 }
+
                 $data['spots'] = $checkHots;
                 $data['filter'] = $checkFilters;
 
@@ -111,7 +116,6 @@ class Campaign extends CI_Controller{
                     'finish_date'       => isset($_POST['finish_date']) ? $this->input->post('finish_date') : "",
                     'media'             => isset($_POST['media']) ? $this->input->post('media') : "",
                     'question'          => isset($_POST['question']) ? $this->input->post('question') : "",
-                    'description'       => isset($_POST['description']) ? $this->input->post('description') : "",
                     'description_media' => isset($_POST['description_media']) ? $this->input->post('description_media') : "",
                     'quantity'          => isset($_POST['quantity']) ?$this->input->post('quantity'):0,
                     'amount'            => isset($_POST['amount']) ?$this->input->post('amount'):0,
@@ -256,7 +260,6 @@ class Campaign extends CI_Controller{
         }
         
         if (isset($_POST['filter1']) && isset($_POST['filter2'])) {
-
                 $insertRelatedFilter = $this->campaign_model->AddCampaignFilters(array(
                     "campaign_id" => $campaign_id,
                     "type_id" => $this->input->post('filter1'),
@@ -302,7 +305,7 @@ class Campaign extends CI_Controller{
         if($this->session->type_id<>4)
             show_404 ();
         
-        $data['title']="Mis camapañas";
+        $data['title']="Mis campañas";
         $data['body']="admin/my_campaign";
         $this->load->view("admin/layout/base",$data);
     }

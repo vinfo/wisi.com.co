@@ -70,7 +70,7 @@ $(document).ready(function(){
         
         $("#mask_phone").mask('99 (999) 999-99-99');
         $("#mask_credit").mask('9999-9999-9999-9999');
-        $("#mask_date").mask('9999/99/99');
+        $("#mask_date").mask('9999-99-99');
         $("#mask_tin").mask('99-9999999');
         $("#mask_ssn").mask('999-99-9999');
 

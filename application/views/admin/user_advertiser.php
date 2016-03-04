@@ -1,5 +1,6 @@
 <script type="text/javascript">
     $(document).ready(function(){
+        $('select.readonly').prop('disabled', true);
         var initData=[{"data": "firstname"},
                      {"data": "lastname"},
                      {"data": "email"},
@@ -59,24 +60,21 @@
     <div class="workplace">
         <?php $this->load->view('alerts/errors')?>
         <?php $this->load->view('alerts/success')?>
-        
+        <?php if(isset($userdata)=="edit"){?>
         <div class="row-fluid">
             <div class="span12">
                 <div class="head">
                     <div class="isw-user"></div>
                     <h1>
                         <?php echo $title ?>
-                        
-                            <a href="<?php echo base_url($this->uri->segment(1)."/".$this->uri->segment(2))?>" class="new_entry">Agregar nuevo</a>
                     </h1>
                     
                     <div class="clear"></div>
                 </div>
-                <div class="block-fluid"> 
-                    <form method="post" enctype="multipart/form-data">
-                        
+                <div class="block-fluid">                    
+                    <form method="post" enctype="multipart/form-data">                        
                         <div class="row-form">
-                            <img src="<?php  echo (isset($userdata))?GetUserImage($userdata->image,"small"):base_url("assets/media/user/default.png")?>"
+                            <img src="<?php  echo (isset($userdata))?GetUserImage($userdata->image,"small"):base_url("assets/media/user/default_logo.png")?>"
                                 alt="<?php echo isset($userdata)?$userdata->name:"usuario"?>"
                                 title="<?php echo isset($userdata)?$userdata->name:"usuario"?>" 
                                 class="img-circle img-thumbnail" width="150" height="150"/>
@@ -84,13 +82,13 @@
 
                         <div class="row-form">
                             <div class="span3">Nombres:</div>
-                            <div class="span9"><input type="text" id="name" name="name" placeholder="Nombre" value="<?php echo set_value('name',isset($userdata)?$userdata->name:''); ?>"/></div>
+                            <div class="span9"><input type="text" id="name" name="name" placeholder="Nombre" value="<?php echo set_value('name',isset($userdata)?$userdata->name:''); ?>"<?php echo $readonly;?>/></div>
                             <div class="clear"></div>
                         </div> 
 
                         <div class="row-form">
                             <div class="span3">Apellidos:</div>
-                            <div class="span9"><input type="text" id="lastname" name="lastname" placeholder="Apellido" value="<?php echo set_value('lastname',isset($userdata)?$userdata->lastname:''); ?>"/></div>
+                            <div class="span9"><input type="text" id="lastname" name="lastname" placeholder="Apellido" value="<?php echo set_value('lastname',isset($userdata)?$userdata->lastname:''); ?>" <?php echo $readonly;?>/></div>
                             <div class="clear"></div>
                         </div>                         
 
@@ -102,36 +100,36 @@
 
                         <div class="row-form">
                             <div class="span3">Contraseña:</div>
-                            <div class="span9"><input type="password" id="password" name="password" placeholder="Contraseña"/></div>
+                            <div class="span9"><input type="password" id="password" name="password" placeholder="Contraseña" <?php echo $readonly;?>/></div>
                             <div class="clear"></div>
                             <?php if(isset($userdata)&&$userdata):?>
                                 <input type="hidden" name="hpass" value="<?php echo $userdata->password;?>"/>
                             <?php endif;?>
                         </div>
                         <div class="row-form">
+                            <div class="span3">Confirmar contraseña:</div>
+                            <div class="span9"><input type="password" id="re_password" name="re_password" placeholder="Confirma contraseña" <?php echo $readonly;?>/></div>
+                            <div class="clear"></div>
+                        </div>                         
+                        <div class="row-form">
                             <div class="span3">Dirección:</div>
-                            <div class="span9"><input type="text" id="phone" name="address" placeholder="Dirección" value="<?php echo set_value('address',isset($userdata)?$userdata->address:''); ?>"/></div>
+                            <div class="span9"><input type="text" id="phone" name="address" placeholder="Dirección" value="<?php echo set_value('address',isset($userdata)?$userdata->address:''); ?>" <?php echo $readonly;?>/></div>
                             <div class="clear"></div>
                         </div> 
                         <div class="row-form">
                             <div class="span3">Teléfono:</div>
-                            <div class="span9"><input type="text" id="phone" name="phone" placeholder="Teléfono" value="<?php echo set_value('phone',isset($userdata)?$userdata->phone:''); ?>"/></div>
+                            <div class="span9"><input type="text" id="phone" name="phone" placeholder="Teléfono" value="<?php echo set_value('phone',isset($userdata)?$userdata->phone:''); ?>" <?php echo $readonly;?>/></div>
                             <div class="clear"></div>
                         </div> 
                         <div class="row-form">
                             <div class="span3">Celular:</div>
-                            <div class="span9"><input type="text" id="celphone" name="celphone" placeholder="Celular" value="<?php echo set_value('celphone',isset($userdata)?$userdata->celphone:''); ?>"/></div>
-                            <div class="clear"></div>
-                        </div> 
-                        <div class="row-form">
-                            <div class="span3">Fecha de nacimiento:</div>
-                            <div class="span9"> <input  type="text" id="mask_date" name="birthday" value="<?php echo set_value('birthday',isset($userdata)?  str_replace("-","/",$userdata->birthday):''); ?>"></div>
+                            <div class="span9"><input type="text" id="celphone" name="celphone" placeholder="Celular" value="<?php echo set_value('celphone',isset($userdata)?$userdata->celphone:''); ?>" <?php echo $readonly;?>/></div>
                             <div class="clear"></div>
                         </div> 
                         <div class="row-form">
                             <div class="span3">Pais</div>
                             <div class="span7">
-                                <select  id="country" name="country">
+                                <select  id="country" name="country" class="readonly">
                                     <option value="">--Seleccionar--</option>
                                     <?php if(isset($countries)&&!empty($countries)): foreach($countries as $country):?>
                                     <option value="<?php echo $country->code?>" <?php echo (isset($userdata)&&$userdata->country==$country->code)?"selected":""?>><?php echo $country->country?></option>
@@ -143,7 +141,7 @@
                         <div class="row-form">
                             <div class="span3">Ciudad</div>
                             <div class="span7">
-                                <select  id="city" name="city">
+                                <select  id="city" name="city"  class="readonly">
                                     <option value="">--Seleccionar--</option>
                                     <?php if(isset($cities)&&!empty($cities)): foreach($cities as $city):?>
                                     <option value="<?php echo $city->id?>" <?php echo (isset($userdata)&&$userdata->city==$city->id)?"selected":""?>><?php echo $city->city?></option>
@@ -155,18 +153,18 @@
                         
                        <div class="row-form">
                             <div class="span3">Empresa:</div>
-                            <div class="span9"> <input  type="text" id="company" name="company" value="<?php echo set_value('company',isset($userdata)?  $userdata->company:''); ?>"></div>
+                            <div class="span9"> <input  type="text" id="company" name="company" value="<?php echo set_value('company',isset($userdata)?  $userdata->company:''); ?>" <?php echo $readonly;?>></div>
                             <div class="clear"></div>
                         </div> 
                         <div class="row-form">
                             <div class="span3">Nit:</div>
-                            <div class="span9"> <input  type="text" id="nit" name="nit" value="<?php echo set_value('nit',isset($userdata)?  $userdata->nit:''); ?>"></div>
+                            <div class="span9"> <input  type="text" id="nit" name="nit" value="<?php echo set_value('nit',isset($userdata)?  $userdata->nit:''); ?>" <?php echo $readonly;?>></div>
                             <div class="clear"></div>
                         </div> 
                         
                         <div class="row-form">
                             <div class="span3">Logo:</div>
-                            <div class="span9"><input type="file" class="form-control-file" id="image" name="image"></div>
+                            <div class="span9"><input type="file" class="form-control-file" id="image" name="image" <?php echo $disabled;?>></div>
                             <small class="text-muted">Solo se permite archivos de tipo jpg|png|gif.</small>
                             <div class="clear"></div>
                         </div> 
@@ -185,14 +183,15 @@
                             <div class="clear"></div>
                         </div>
                         <div class="row-form">
-                            <input type="hidden" name="type_id" value="4"/>
+                            <input type="hidden" id="type_id" name="type_id" value="4"/>
                             <input type="hidden" name="action" value="<?php echo isset($userdata)?"edit":"new"?>"/>
                             <button type="submit" class="btn btn-primary"><?php echo isset($userdata)?"Editar":"Crear"?></button>
                         </div>
-                    </form>
+                    </form>                    
                 </div>
             </div>
         </div>
+        <?php }?>
         <!--Data table-->
         <div class="alert alert-success none"  id="successMsg"></div>
         <div class="alert alert-danger none" id="errormsg"></div>

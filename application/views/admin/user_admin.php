@@ -73,14 +73,14 @@
                 </div>
                 <div class="block-fluid"> 
                     <form method="post" enctype="multipart/form-data">
-                        
+                        <?php /*?>
                         <div class="row-form">
                             <img src="<?php  echo (isset($userdata))?GetUserImage($userdata->image,"small"):base_url("assets/media/user/default.png")?>"
                                 alt="<?php echo isset($userdata)?$userdata->name:"usuario"?>"
                                 title="<?php echo isset($userdata)?$userdata->name:"usuario"?>" 
                                 class="img-circle img-thumbnail" width="150" height="150"/>
                         </div>
-
+                        <?php */?>
                         <div class="row-form">
                             <div class="span3">Nombres:</div>
                             <div class="span9"><input type="text" id="name" name="name" placeholder="Nombre" value="<?php echo set_value('name',isset($userdata)?$userdata->name:''); ?>"/></div>
@@ -112,12 +112,14 @@
                             <div class="span9"><input type="password" id="re_password" name="re_password" placeholder="Confirma contraseña"/></div>
                             <div class="clear"></div>
                         </div>
+                        <?php /*?>
                         <div class="row-form">
                             <div class="span3">Imgane de usuario:</div>
                             <div class="span9"><input type="file" class="form-control-file" id="image" name="image"></div>
                             <small class="text-muted">Solo se permite archivos de tipo jpg|png|gif.</small>
                             <div class="clear"></div>
-                        </div> 
+                        </div>
+                        <?php */?>
                         <div class="row-form">
                             <div class="span3">Tipo</div>
                             <div class="span7">

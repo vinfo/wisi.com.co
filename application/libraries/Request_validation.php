@@ -68,16 +68,19 @@ class Request_validation {
 
         if($type=="new"){
               $this->CI->form_validation->set_rules('password', 'Contraseña', 'required', array('required' => '%s es requerida')); 
-              if($role=="admin")
+              //if($role=="admin"||$role=="admin")
                 $this->CI->form_validation->set_rules('re_password', 'Confirmar contraseña', 'required|matches[password]', array('required' => '%s es requerida','matches'=>'%s no coincide con la contraseña')); 
 
         }
           
-        if($role=="advertiser"){
-           
+        if($role=="advertiser"){           
             $this->CI->form_validation->set_rules('company', 'Empresa', 'required', array('required' => '%s es requerida'));
             $this->CI->form_validation->set_rules('nit', 'Numero de nit', 'required', array('required' => '%s es requerido'));
          }
+
+        if($role=="client"){           
+            $this->CI->form_validation->set_rules('birthday', 'Fecha de Nacimiento', 'required', array('required' => '%s es requerida'));
+         }         
         
         if ($this->CI->form_validation->run() == FALSE)
                 return false;

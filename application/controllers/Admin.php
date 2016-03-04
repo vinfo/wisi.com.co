@@ -101,10 +101,9 @@ class Admin extends CI_Controller {
 
                         if ($formValidation) {
                             $prependMessage = array(
+                                'mtime' => $this->input->post('mtime'),
                                 'message' => $this->input->post('message'),
                                 'image' => $image,
-                                'start_date' => $this->input->post('start_date'),
-                                'finish_date' => isset($_POST['finish_date']) ? $this->input->post('finish_date') : "",
                                 'type_id' => $this->input->post('type_id'),
                             );
 
@@ -164,10 +163,9 @@ class Admin extends CI_Controller {
 
                     if ($formValidation) {
                         $prependMessage = array(
+                            'mtime' => $this->input->post('mtime'),
                             'message' => $this->input->post('message'),
                             'image' => $image,
-                            'start_date' => $this->input->post('start_date'),
-                            'finish_date' => isset($_POST['finish_date']) ? $this->input->post('finish_date') : "",
                             'type_id' => $this->input->post('type_id'),
                             'cdate' => $this->config->item('current_date')
                         );

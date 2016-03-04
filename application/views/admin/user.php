@@ -75,14 +75,14 @@
                 </div>
                 <div class="block-fluid"> 
                     <form method="post" enctype="multipart/form-data">
-                        
+                        <?php /*?>
                         <div class="row-form">
                             <img src="<?php  echo (isset($userdata))?GetUserImage($userdata->image,"small"):base_url("assets/media/user/default.png")?>"
                                 alt="<?php echo isset($userdata)?$userdata->name:"usuario"?>"
                                 title="<?php echo isset($userdata)?$userdata->name:"usuario"?>" 
                                 class="img-circle img-thumbnail" width="150" height="150"/>
                         </div>
-
+                        <?php */?>
                         <div class="row-form">
                             <div class="span3">Nombres:</div>
                             <div class="span9"><input type="text" id="name" name="name" placeholder="Nombre" value="<?php echo set_value('name',isset($userdata)?$userdata->name:''); ?>"/></div>

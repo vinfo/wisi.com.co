@@ -22,7 +22,7 @@ Class Wisi_model extends CI_Model{
      * @return resultset Object result
      */
     public function GetCountries(){
-        $query =$this->db->get('country');
+        $query = $this->db->order_by("country", "asc")->get('country');
         if ($query->num_rows()>0) {
             return $query->result();
         }else{
@@ -35,7 +35,7 @@ Class Wisi_model extends CI_Model{
      * @return resultset Object result
      */
     public function GeCitiesByCountryCode($country){
-        $query =$this->db->where('country',$country)->get('city');
+        $query =$this->db->where('country',$country)->order_by("city", "asc")->get('city');
         if ($query->num_rows()>0) {
             return $query->result();
         }else{

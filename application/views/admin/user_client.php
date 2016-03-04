@@ -51,7 +51,7 @@
     <div class="breadLine">
     <ul class="breadcrumb">
       <li><a href="<?php echo base_url()?>admin">Administrador</a> <span class="divider">></span></li>
-      <li class="active">Usuarios</li>
+      <li class="active">Clientes</li>
     </ul>
        
   </div>
@@ -73,14 +73,14 @@
                 </div>
                 <div class="block-fluid"> 
                     <form method="post" enctype="multipart/form-data">
-                        
+                        <?php /*?>
                         <div class="row-form">
                             <img src="<?php  echo (isset($userdata))?GetUserImage($userdata->image,"small"):base_url("assets/media/user/default.png")?>"
                                 alt="<?php echo isset($userdata)?$userdata->name:"usuario"?>"
                                 title="<?php echo isset($userdata)?$userdata->name:"usuario"?>" 
                                 class="img-circle img-thumbnail" width="150" height="150"/>
                         </div>
-
+                        <?php */?>
                         <div class="row-form">
                             <div class="span3">Nombres:</div>
                             <div class="span9"><input type="text" id="name" name="name" placeholder="Nombre" value="<?php echo set_value('name',isset($userdata)?$userdata->name:''); ?>"/></div>
@@ -107,32 +107,27 @@
                                 <input type="hidden" name="hpass" value="<?php echo $userdata->password;?>"/>
                             <?php endif;?>
                         </div>
+                        <div class="row-form">
+                            <div class="span3">Confirmar contraseña:</div>
+                            <div class="span9"><input type="password" id="re_password" name="re_password" placeholder="Confirma contraseña"/></div>
+                            <div class="clear"></div>
+                        </div>                        
                         
                         <div class="row-form">
                              <div class="span3">Sexo:</div>
                                 <div class="span7">
-                                    <label class="checkbox inline">
-                                        <div class="radio">
-                                            <span>
-                                                <input type="radio" <?php echo (isset($userdata)&&$userdata->genre==1)?"checked":""?> value="1" name="genre" style="opacity: 0;">
-                                            </span>
-                                        </div>
-                                        Femenino
-                                    </label>
-                                    <label class="checkbox inline">
-                                        <div class="radio">
-                                            <span class="checked">
-                                                <input type="radio" <?php echo (isset($userdata)&&$userdata->genre==2)?"checked":""?> name="genre" value="2" style="opacity: 0;">
-                                            </span>
-                                        </div>
-                                        Masculino
-                                    </label>
+                                    <select  id="genre" name="genre">
+                                    <?php if(isset($genre)&&!empty($genre)): foreach($genre as $genre):?>
+                                    <option value="<?php echo $genre->id?>" <?php echo (isset($userdata)&&$userdata->genre==$genre->id)?"selected":""?>><?php echo $genre->name?></option>                                    
+                                    <?php endforeach;endif;?>
+                                    <option value="0">Prefiero no indicar</option>
+                                </select>
                                 </div>
                             <div class="clear"></div>
                         </div>
                         <div class="row-form">
                             <div class="span3">Fecha de nacimiento:</div>
-                            <div class="span9"> <input  type="text" id="mask_date" name="birthday" value="<?php echo set_value('birthday',isset($userdata)?  str_replace("-","/",$userdata->birthday):''); ?>"></div>
+                            <div class="span2"> <input  type="text" id="mask_date" name="birthday" value="<?php echo set_value('birthday',isset($userdata)?  str_replace("-","/",$userdata->birthday):''); ?>"></div>
                             <div class="clear"></div>
                         </div> 
                         <div class="row-form">
@@ -164,8 +159,9 @@
                             <div class="span7">
                                 <select  id="marital" name="marital">
                                     <?php if(isset($marital)&&!empty($marital)): foreach($marital as $marital):?>
-                                    <option value="<?php echo $marital->id?>" <?php echo (isset($userdata)&&$userdata->marital==$marital->id)?"selected":""?>><?php echo $marital->name?></option>
+                                    <option value="<?php echo $marital->id?>" <?php echo (isset($userdata)&&$userdata->marital==$marital->id)?"selected":""?>><?php echo $marital->name?></option>                                    
                                     <?php endforeach;endif;?>
+                                    <option value="0">Prefiero no indicar</option>
                                 </select>
                             </div>
                             <div class="clear"></div>
@@ -191,8 +187,8 @@
                             <div class="span7">
                                 <select  id="status" name="status" <?php echo isset($avoidDataTable)?"disabled":""?>>
                                     <option value="">--Seleccionar--</option>
-                                    <option value="1" <?php echo (isset($userdata)&&$userdata->status==1)?"selected":""?>>Activo</option>
-                                    <option value="0" <?php echo (isset($userdata)&&$userdata->status==0)?"selected":""?>>Inactivo</option>
+                                    <option value="1" <?php echo (isset($userdata)&&$userdata->status==1||(isset($_POST["status"])&&$_POST["status"]==1))?"selected":""?>>Activo</option>
+                                    <option value="0" <?php echo (isset($userdata)&&$userdata->status==0||(isset($_POST["status"])&&$_POST["status"]==0))?"selected":""?>>Inactivo</option>
                                 </select>
                             </div>
                             <?php if(isset($avoidDataTable)):?>

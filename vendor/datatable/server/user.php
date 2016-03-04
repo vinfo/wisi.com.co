@@ -43,8 +43,9 @@ $columns = array(
                             break;
                     }
                 }
-                
-                $innerAction="<div class=\"datatable_action_buttons\"><input type=\"checkbox\" class=\"selectItem\" name=\"selectItem[]\" id=\"item_".$d."\"  value=\"".$d."\"/>"
+                $check="<input type=\"checkbox\" class=\"selectItem\" name=\"selectItem[]\" id=\"item_".$d."\"  value=\"".$d."\"/>";
+                if($urlType=="advertiser")$check="";               
+                $innerAction="<div class=\"datatable_action_buttons\">".$check
                             . "<a href='http://".$_SERVER['HTTP_HOST']."/user/".$urlType."/".$d."/' title='Editar'><i class=\"icon-pencil\"></i></a>"
                             . $canDelete."</div>";   
                 return $innerAction;

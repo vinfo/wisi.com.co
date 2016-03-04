@@ -4,6 +4,7 @@
     <div class="adminControl active"> Mís Datos </div>
   </div>
   <div class="admin">
+  <?php /*?>
       <div class="image"> 
           <img src="<?php echo(isset($this->session))?GetUserImage($this->session->image,"small"):base_url("assets/media/user/default.png")?>" 
                class="img-polaroid" 
@@ -11,6 +12,7 @@
                alt="<?php echo $this->session->name?>"
                width="50"/> 
       </div>
+      <?php */?>
     <ul class="control">
       <li><span class="icon-cog"></span> <a href="<?php echo base_url("user/profile")?>">Perfil</a></li>
       <li><span class="icon-share-alt"></span> <a href="<?php echo base_url()?>logout" class="logout">Cerrar sesión</a></li>
