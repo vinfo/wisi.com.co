@@ -26,7 +26,7 @@ class Request_validation {
         $this->CI->form_validation->set_rules('email', 'Correo electronico', 'required|valid_email',
                   array(
                       'required' => '%s es requerido',
-                      'valid_email'=>'El %s de ser valido'
+                      'valid_email'=>'El %s debe ser valido'
                       )
                  );
         $this->CI->form_validation->set_rules('password', 'Contraseña', 'required', array('required' => '%s es requerida'));
@@ -47,18 +47,18 @@ class Request_validation {
         
         $this->CI->form_validation->set_rules('name', 'Nombre', 'required', array(
                 'required' => '%s es requerido',
-                'valid_email' => 'El %s de ser valido'
+                'valid_email' => 'El %s debe ser valido'
                     )
         );
         $this->CI->form_validation->set_rules('lastname', 'Apellido', 'required', array(
             'required' => '%s es requerido',
-            'valid_email' => 'El %s de ser valido'
+            'valid_email' => 'El %s debe ser valido'
                 )
         );
         if($type=="new")
             $this->CI->form_validation->set_rules('email', 'Correo electronico', 'required|valid_email|is_unique[user.email]', array(
                 'required' => '%s es requerido',
-                'valid_email' => 'El %s de ser valido',
+                'valid_email' => 'El %s debe ser valido',
                 'is_unique' => 'El %s ya esta asignado a una cuenta'
                    )
             );
@@ -95,7 +95,7 @@ class Request_validation {
     public function recovery_request(){
         $this->CI->form_validation->set_rules('email', 'Correo electronico', 'required|valid_email', array(
             'required' => '%s es requerido',
-            'valid_email' => 'El %s de ser valido',
+            'valid_email' => 'El %s debe ser valido',
                 )
         );
         if ($this->CI->form_validation->run() == FALSE) {

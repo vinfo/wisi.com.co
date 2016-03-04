@@ -329,8 +329,7 @@ $("#cap_type").change(function(){
                     if(isset($hotspots)&&$hotspots):
                         foreach($hotspots as $hotspot):
                             ?>
-                        <label class="checkbox inline tt" title="Valor pauta día: $<?php echo number_format($hotspot->day_amount);?>,
-                            valor pauta por click: $<?php echo number_format($hotspot->click_amount)?>, valor pauta por visualizacion $<?php echo number_format($hotspot->print_amount)?>">
+                        <label class="checkbox inline tt" title="Valor pauta día: $<?php if($level<>1){echo number_format($hotspot->day_amount);}else{echo "0";}?><br/>Valor pauta por click: $<?php if($level<>1){echo number_format($hotspot->click_amount);}else{echo "0";}?><br/>Valor pauta por visualizacion $<?php if($level<>1){echo number_format($hotspot->print_amount);}else{echo "0";}?>">
                             <div class="checker">
                                 <span class="checked">
                                     <input type="checkbox" name="hotspot[]" value="<?php echo $hotspot->id?>" <?php echo isset($spots[$hotspot->id])?'checked="checked"':''?> style="opacity: 0;">
@@ -493,8 +492,7 @@ $("#cap_type").change(function(){
                 if(isset($hotspots)&&$hotspots):
                     foreach($hotspots as $hotspot):
                         ?>
-                    <label class="checkbox inline tt" title="Valor pauta día: $<?php echo number_format($hotspot->day_amount);?>,
-                        valor pauta por click: $<?php echo number_format($hotspot->click_amount)?>, valor pauta por visualizacion $<?php echo number_format($hotspot->print_amount)?>">
+                    <label class="checkbox inline tt" title="Valor pauta día: $<?php if($level<>1){echo number_format($hotspot->day_amount);}else{echo "0";}?><br/>Valor pauta por click: $<?php if($level<>1){echo number_format($hotspot->click_amount);}else{echo "0";}?><br/>Valor pauta por visualizacion $<?php if($level<>1){echo number_format($hotspot->print_amount);}else{echo "0";}?>">
                         <div class="checker">
                             <span class="checked">
                                 <input type="checkbox" name="hotspot[]" value="<?php echo $hotspot->id?>" <?php echo isset($spots[$hotspot->id])?'checked="checked"':''?> style="opacity: 0;">
