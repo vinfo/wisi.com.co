@@ -13,6 +13,9 @@ task.factory('Task',function($http, $q){
 		},
                 validateRegisterForm:function(obj){
                     var msj='';
+                    if (obj.type_id=='') {
+                        msj+='Tipo de registro es requerido ';
+                    }                     
                     if (obj.name=='') {
                         msj+='Nombres es requerido ';
                     } 

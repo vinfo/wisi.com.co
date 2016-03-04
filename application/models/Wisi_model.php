@@ -79,13 +79,13 @@ Class Wisi_model extends CI_Model{
     public function AddSocialNetworkUser($data){
         $userdata=false;
         $chekcUser = $this->db
-                            ->where('network = '.$data['network'].' OR email='.$data['email'])
+                            ->where('network = '.$data['network'].' OR email=\''.$data['email'].'\'')
                             ->where("type_id",3)
                             ->get('user');
         
          if ($chekcUser->num_rows() > 0){
                 $this->db
-                        ->where('network = '.$data['network'].' OR email='.$data['email'])
+                        ->where('network = '.$data['network'].' OR email=\''.$data['email'].'\'')
                         ->where("type_id",3)
                         ->update('user',$data);
                 

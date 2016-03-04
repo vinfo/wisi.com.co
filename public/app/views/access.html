@@ -31,9 +31,14 @@
         <button type="submit" class="btn sendbtn b3-w">Enviar</button>
     </form>
 </div>
-<div class="col-lg-4 col-centered b3-w top160 padding10" ng-cloak ng-show="isRegister">
-    
+<div class="col-lg-4 col-centered b3-w top160 padding10" ng-cloak ng-show="isRegister">    
     <form role="form" ng-submit="register()">
+        <div class="form-group">
+            <select class="form-control" ng-model="formData.type_id" ng-change="setUserType()">           
+                <option value="3">Registrarse como Usuario</option> 
+                <option value="4">Registrarse como Anunciante</option> 
+            </select>
+        </div>        
         <div class="form-group">
             <input type="text" class="form-control" ng-model="formData.name" placeholder="Nombres">
         </div>
@@ -79,8 +84,7 @@
                     ng-cloak
                     ng-change="getCities()"
                     ng-options="it.code as it.country for it in countries">
-                <option value="">--Seleccionar país--</option>  
-              
+                <option value="">--Seleccionar país--</option>              
             </select>
         </div>
         <div class="form-group">
@@ -106,7 +110,6 @@
         
         <img class="loading" title="Creando usuario" src="../assets/img/loaders/c_loader_ge.gif" ng-cloak ng-show="isLoading">
         <span class="text-danger" ng-cloak ng-if="hasError">{{error}}</span>
-        <input type="hidden" value="" ng-model="formData.type_id"/>
         <button type="submit" class="btn sendbtn b3-w">Enviar</button>
     </form>
 </div>

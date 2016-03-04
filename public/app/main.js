@@ -1,7 +1,8 @@
 'use strict';
 (function(){
     var main = angular.module('Main',['Routing','task','angularFblogin']);
-    var resourceEndPoint='http://'+location.host+'/';
+    //var resourceEndPoint='http://'+location.host+'/';
+    var resourceEndPoint='http://wisi.com.co/';
 
 
 /*index controller*/
@@ -35,8 +36,7 @@ main.controller('ChatController',function($scope){
     
 })
 /*access controller*/
-main.controller('AccessController',function($scope,$http,$location,$fblogin,$window,Task){
-   
+main.controller('AccessController',function($scope,$http,$location,$fblogin,$window,Task){   
     $scope.islogin=false;
     $scope.isRegister=false;
     $scope.hasError=false;
@@ -70,9 +70,12 @@ main.controller('AccessController',function($scope,$http,$location,$fblogin,$win
     $scope.ShowRegisterForm=function(type){
         $scope.islogin=false;
         $scope.isRegister=true;
-        $scope.formData.type_id=type;
-    }
-    
+    }    
+
+    /*actualizar vista de registro*/
+    $scope.setUserType=function(){
+            alert($scope.formData.type_id);
+    }    
     /*obtener paises*/
     $http.get(resourceEndPoint+'api/countries/').success(function(res){
         $scope.countries=res;
