@@ -1,0 +1,117 @@
+<div id="fb-root"></div>
+<script>
+    $(document).ready(function(){
+       $('.birthday').datepicker({
+                   dayNames: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
+                   dayNamesShort: ["Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab"],
+                   dayNamesMin: ["Do", "Lu", "Ma", "Mi", "ju", "Vi", "Sa"],
+                   monthNames: ["Enero", "Feberero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                   monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                   dateFormat: "yy-mm-dd",
+                   changeYear: true,
+                   yearRange: "-100:+0",
+                   isRTL: false,
+        });
+    });
+</script>
+<div class="col-lg-4 col-centered b3-w top160">
+    <img src="assets/images/logo.png" class="img-responsive center-block" alt="Wisi" title="Wisi"/>
+    <a ng-click="FBlogin()" class="btn custom_btn b3-w">Facebook</a>
+</div>
+<div class="col-lg-4 col-centered b3-w top160 padding10" ng-cloak ng-show="islogin">
+    <form role="form" ng-submit="login()">
+        <div class="form-group">
+            <input type="email" class="form-control" ng-model="formData.email" placeholder="Correo electronico">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" ng-model="formData.password" placeholder="Contraseña">
+        </div>
+        <img class="loading" title="Creando usuario" src="../assets/img/loaders/c_loader_ge.gif" ng-cloak ng-show="isLoading">
+        <span class="text-danger" ng-cloak ng-if="hasError">{{error}}</span>
+        <button type="submit" class="btn sendbtn b3-w">Enviar</button>
+    </form>
+</div>
+<div class="col-lg-4 col-centered b3-w top160 padding10" ng-cloak ng-show="isRegister">
+    
+    <form role="form" ng-submit="register()">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="formData.name" placeholder="Nombres">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="formData.lastname" placeholder="Apellidos">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" ng-model="formData.email_register" placeholder="Correo electronico">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" ng-model="formData.password_register" placeholder="Contraseña">
+        </div>
+        <div class="form-group">
+            Femenino <input type="radio" name="genre" value="1"  ng-model="formData.genre" >
+            Masculino <input type="radio" name="genre" value ="2" ng-model="formData.genre" >
+        </div>
+        <div ng-if="formData.type_id==3">
+            <div class="form-group">
+                <input type="text" class="form-control birthday" ng-model="formData.birthday" placeholder="Fecha de nacimiento">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="formData.phone" placeholder="Telefono" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="formData.celphone" placeholder="Celular" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));">
+            </div>
+        </div>
+         <div ng-if="formData.type_id==4">
+             <div class="form-group">
+                <input type="text" class="form-control" ng-model="formData.address" placeholder="Dirección" >
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="formData.nit" placeholder="Nit">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="formData.company" placeholder="Empresa" >
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <select class="form-control"
+                    ng-model="formData.country"
+                    ng-cloak
+                    ng-change="getCities()"
+                    ng-options="it.code as it.country for it in countries">
+                <option value="">--Seleccionar país--</option>  
+              
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control"
+                    ng-model="formData.city"
+                    ng-cloak
+                    ng-options="it.id as it.city for it in cities">
+                <option value="">--Seleccionar ciudad--</option>
+                
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control"
+                    ng-model="formData.marital"
+                    ng-cloak
+                    ng-options="it.id as it.name for it in marital">
+                <option value="">--Seleccionar estado civil--</option>  
+            </select>
+        </div>
+        <div class="form-group">
+            Boletin <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.newsletter" >
+        </div>
+        
+        <img class="loading" title="Creando usuario" src="../assets/img/loaders/c_loader_ge.gif" ng-cloak ng-show="isLoading">
+        <span class="text-danger" ng-cloak ng-if="hasError">{{error}}</span>
+        <input type="hidden" value="" ng-model="formData.type_id"/>
+        <button type="submit" class="btn sendbtn b3-w">Enviar</button>
+    </form>
+</div>
+<div class="col-lg-4 col-centered top160">
+    <div ng-include="'app/views/bottom_links.html?1'"></div>
+</div>
+
+

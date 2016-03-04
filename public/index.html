@@ -1,0 +1,37 @@
+
+<html  ng-app="Main">
+    <head>
+        <title>Wisi</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link  rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+        <link  rel="stylesheet" href="assets/css/bootstrap-theme.min.css"/>
+        <link  rel="stylesheet" href="../assets/css/ui.css"/>
+        <link  rel="stylesheet" href="assets/css/style.css"/>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div ng-view></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="assets/js/jquery-2.2.1.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>
+        
+        <!-- angular libraries-->
+        <script type="text/javascript" src="assets/js/angular/angular.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular/angular-route.min.js"></script>
+        <!--angular routing-->
+        <script type="text/javascript" src="app/config/routing.js"></script>
+        <!--angular services-->
+        <script type="text/javascript" src="app/services/task.js"></script>
+        <script type="text/javascript" src="app/services/angular-fblogin.js"></script>
+        <!--angular main-->
+        <script type="text/javascript" src="app/main.js"></script>
+    </body>
+</html>

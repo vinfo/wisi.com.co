@@ -1,0 +1,25 @@
+/* 
+    Created on : 24/02/2016, 10:28:36 AM
+    Author     : Pochis
+*/
+body{background-color: #00FFFF}
+.col-centered{float: none;margin: 5px auto;position: relative;padding: 0}
+.col-centered img{width: 300px}
+.top160{top: 160px;}
+.top100{top: 100px;}
+.b3-w{border: 3px solid #fff;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;}
+.custom_btn{background: #00ff00 none repeat scroll 0 0;color: #fff;display: block;margin: 0 auto 3px;text-align: center;max-width: 240px;white-space: normal;}
+.opts{text-align: center;background: #3366FF;margin-top: 5px;padding: 5px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;}
+.opts a{color: #fff;font-weight: bold;padding: 10px;text-decoration: underline;}
+.opts span{color: #fff}
+.terms{color: #fff;text-align: justify;padding: 15px;background: rgba(0,0,0,0.2);font-weight:bold}
+.terms h2{font-size: 25px;text-align: center;text-decoration: underline;}
+.chatagua{background: #33CC99;color:#fff}
+.chatarea{ margin-bottom: 5px;}
+.sendbtn{background: #000 none repeat scroll 0 0;color: #fff;display: block;margin: 0 auto;max-width: 150px;text-align: center;width: 100px;}
+.chat{padding: 10px}
+.chat h2{font-size: 25px;text-align: center;}
+.padding10{padding: 10px}
+.chkterms{display: block;margin: 0 auto 10px;width: 20px;}
+.ui-datepicker-year{color: #000}
+.loading{width: 31px!important;display:block;margin:0 auto}

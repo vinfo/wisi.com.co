@@ -1,0 +1,2 @@
+[29-Feb-2016 21:13:40 America/Bogota] PHP Fatal error:  Call to undefined method Campaign_model::GetFiltersOnCampaign() in /home/wisicom/public_html/application/controllers/Campaign.php on line 56
+[02-Mar-2016 16:11:11 America/Bogota] PHP Fatal error:  Call to undefined method Request_validation::recovery_request() in /home/wisicom/public_html/application/controllers/Admin.php on line 208

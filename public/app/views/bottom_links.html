@@ -1,0 +1,13 @@
+<div class="opts" ng-controller="TermsController">
+        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-change="terms()" ng-model="chkTerm"/>
+        <a href="#/terms" class="">Terminos y condiciones</a>
+        <span>|</span>
+        <a href="#/help" class="">Ayuda</a>
+        <span>|</span>
+        <a href="javascript:void(0)" ng-click="ShowRegisterForm(3)" >Registrarse</a>
+</div>
+<div class="opts">
+        <a href="javascript:void(0)" ng-click="ShowLoginForm()">Acceder</a>
+        <span>|</span>
+        <a href="javascript:void(0)" ng-click="ShowRegisterForm(4)">Pautar</a>
+</div>
